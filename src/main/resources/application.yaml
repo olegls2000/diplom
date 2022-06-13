@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
+    username: um
+    password: um123
+  jpa:
+    show-sql: true
+server:
+  port: 8081
+
+logging:
+  level:
+    root: INFO
