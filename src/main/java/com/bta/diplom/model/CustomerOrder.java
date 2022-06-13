@@ -4,14 +4,8 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
 
 import java.time.ZonedDateTime;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -31,10 +25,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "customer_order")
-public class CustomerOrder {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+public class CustomerOrder extends AbstractBaseEntity {
 
   @Column(name = "order_number")
   private String orderNumber;

@@ -1,8 +1,6 @@
 package com.bta.diplom.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -22,10 +20,7 @@ import lombok.ToString;
 
 @Entity
 @Table(name = "order_line")
-public class OrderLine {
-  @Id
-  @GeneratedValue
-  private Long id;
+public class OrderLine extends AbstractBaseEntity {
 
   @ManyToOne
   @JoinColumn(name = "product_id")
