@@ -16,10 +16,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
+
   @Autowired
   private WebMapper<UserAccountDto, UserAccount> webMapper;
+
   @Autowired
   private UserAccountRepository userAccountRepository;
+
   @Autowired
   private ActivationLinkRepository activationLinkRepository;
 
@@ -39,6 +42,11 @@ public class UserAccountServiceImpl implements UserAccountService {
         "http://localhost:8081/user-account/activate?code=" + activationLink.getCode();
     emailSender.sendEmail(
         userAccountDto.getEmail(), link, "Please activate your Account in Diploma project");
+  }
+
+  @Override
+  public void activate(String code) {
+
   }
 
   private ActivationLink createActivationLink(UserAccount userAccount) {
