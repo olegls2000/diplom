@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/user-account")
@@ -27,7 +28,7 @@ public class UserAccountController {
   }
 
   @GetMapping("/activate")
-  public ResponseEntity<?> activate(@PathVariable String code){
+  public ResponseEntity<?> activate(@RequestParam String code){
     userAccountService.activate(code);
     return new ResponseEntity(HttpStatus.OK);
   }

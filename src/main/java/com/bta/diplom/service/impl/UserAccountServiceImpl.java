@@ -1,13 +1,15 @@
 package com.bta.diplom.service.impl;
 
 import com.bta.diplom.dto.UserAccountDto;
-import com.bta.diplom.email.EmailSender;
+import com.bta.diplom.email.EmailService;
 import com.bta.diplom.mapper.WebMapper;
 import com.bta.diplom.model.ActivationLink;
 import com.bta.diplom.model.UserAccount;
 import com.bta.diplom.repository.ActivationLinkRepository;
 import com.bta.diplom.repository.UserAccountRepository;
 import com.bta.diplom.service.UserAccountService;
+import java.time.Duration;
+import java.time.Period;
 import java.time.ZonedDateTime;
 import java.util.UUID;
 import javax.transaction.Transactional;
@@ -27,7 +29,7 @@ public class UserAccountServiceImpl implements UserAccountService {
   private ActivationLinkRepository activationLinkRepository;
 
   @Autowired
-  private EmailSender emailSender;
+  private EmailService emailSender;
 
   @Transactional
   @Override
@@ -44,9 +46,26 @@ public class UserAccountServiceImpl implements UserAccountService {
         userAccountDto.getEmail(), link, "Please activate your Account in Diploma project");
   }
 
+  @Transactional
   @Override
   public void activate(String code) {
+    final var activationLink = activationLinkRepository.findByCode(code);
+    checkActivationLink(activationLink, code);
+    activationLink.getUserAccount().setActive(true);
+    activationLinkRepository.delete(activationLink);
+  }
 
+  private void checkActivationLink(ActivationLink activationLink, String code) {
+    if (activationLink == null) {
+      throw new RuntimeException("Invalid code in activation link: " + code);
+    }
+    final Duration between = Duration.between(
+        ZonedDateTime.now().toInstant(),
+        activationLink.getCreated().toInstant());
+    final long waitingPeriodInDays = between.toDays();
+    if (waitingPeriodInDays >= 1) {
+      throw new RuntimeException("Activation link with code: " + code + " already expired");
+    }
   }
 
   private ActivationLink createActivationLink(UserAccount userAccount) {
