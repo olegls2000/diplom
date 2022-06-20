@@ -1,6 +1,7 @@
 package com.bta.diplom.service.impl;
 
 import com.bta.diplom.dto.CustomerOrderDto;
+import com.bta.diplom.dto.CustomerOrdersDto;
 import com.bta.diplom.mapper.WebMapper;
 import com.bta.diplom.model.CustomerOrder;
 import com.bta.diplom.repository.CustomerOrderRepository;
@@ -25,4 +26,11 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
     final var orderToCreate = mapper.toEntity(customerOrder);
     repository.save(orderToCreate);
   }
+
+  @Override
+  public void createAll(CustomerOrdersDto customerOrders) {
+
+  }
+
+
 }

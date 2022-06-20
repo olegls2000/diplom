@@ -32,3 +32,5 @@ public class OrderLine extends AbstractBaseEntity {
   @JoinColumn(name = "customer_order_id")
   private CustomerOrder customerOrder;
 }
+
+

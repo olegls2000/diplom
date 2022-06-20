@@ -2,6 +2,7 @@ package com.bta.diplom.controller;
 
 
 import com.bta.diplom.dto.CustomerOrderDto;
+import com.bta.diplom.dto.CustomerOrdersDto;
 import com.bta.diplom.service.CustomerOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,4 +24,11 @@ public class CustomerOrderController {
     customerOrderService.create(customerOrder);
     return new ResponseEntity(HttpStatus.OK);
   }
+
+  @PostMapping("/create-all")
+  public ResponseEntity<?> createAll(@RequestBody CustomerOrdersDto customerOrders) {
+    customerOrderService.createAll(customerOrders);
+    return new ResponseEntity(HttpStatus.OK);
+  }
+
 }
