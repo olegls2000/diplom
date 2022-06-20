@@ -18,7 +18,6 @@ public class ControllerAdvise {
   })
   public ResponseEntity<Object> handleStatus400(HttpServletRequest request,
                                                 final ConstraintViolationException exception) {
-    System.out.println(request);
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exception.getMessage());
   }
 }

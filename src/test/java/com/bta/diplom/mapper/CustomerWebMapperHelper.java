@@ -5,7 +5,7 @@ import java.math.BigInteger;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class CustomerWebMapperHelper {
+class CustomerWebMapperHelper {
 
   static Customer getCustomer() {
     return Customer.builder()
