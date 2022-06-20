@@ -10,6 +10,9 @@ public class CustomerWebMapper
 
   @Override
   public CustomerDto toDto(Customer entity) {
+    if (entity == null) {
+      return null;
+    }
     return CustomerDto.builder()
         .email(entity.getEmail())
         .lastName(entity.getLastName())
@@ -21,6 +24,9 @@ public class CustomerWebMapper
 
   @Override
   public Customer toEntity(CustomerDto dto) {
+    if (dto == null) {
+      return null;
+    }
     return Customer.builder()
         .firstName(dto.getFirstName())
         .email(dto.getEmail())

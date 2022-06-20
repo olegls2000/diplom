@@ -20,7 +20,6 @@ class ActivationLinkCleanServiceImplTest {
 
   private ActivationLinkCleanServiceImpl instanceUnderTest;
 
-
   @BeforeEach
   void beforeEach() {
     activationLinkRepository = mock(ActivationLinkRepository.class);
