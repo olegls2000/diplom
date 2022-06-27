@@ -1,7 +1,7 @@
 package com.bta.diplom.dto;
 
-import java.time.ZonedDateTime;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerOrderDto {
-  private String customerEmail;
+
+  @NotNull
+  private CustomerDto customer;
   private String orderNumber;
-  private ZonedDateTime submissionDate;
 
   private List<OrderLineDto> orderLines;
 }
+
+
+

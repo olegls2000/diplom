@@ -4,6 +4,7 @@ package com.bta.diplom.controller;
 import com.bta.diplom.dto.CustomerOrderDto;
 import com.bta.diplom.dto.CustomerOrdersDto;
 import com.bta.diplom.service.CustomerOrderService;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class CustomerOrderController {
   private CustomerOrderService customerOrderService;
 
   @PostMapping("/create")
-  public ResponseEntity<?> create(@RequestBody CustomerOrderDto customerOrder) {
+  public ResponseEntity<?> create(@Valid @RequestBody CustomerOrderDto customerOrder) {
     customerOrderService.create(customerOrder);
     return new ResponseEntity(HttpStatus.OK);
   }

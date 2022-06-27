@@ -13,7 +13,7 @@ public class ProductWebMapper
         .unitPrice(entity.getUnitPrice())
         .skuCode(entity.getSkuCode())
         .name(entity.getName())
-        .orderLineCount(entity.getOrderLines().size())
+        //.orderLineCount(entity.getOrderLines().size())
         .build();
   }
 
