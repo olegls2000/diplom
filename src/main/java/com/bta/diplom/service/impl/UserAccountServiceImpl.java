@@ -13,6 +13,7 @@ import java.time.ZonedDateTime;
 import java.util.UUID;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,6 +30,9 @@ public class UserAccountServiceImpl implements UserAccountService {
 
   @Autowired
   private EmailService emailSender;
+
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   @Transactional
   @Override
@@ -88,7 +92,10 @@ public class UserAccountServiceImpl implements UserAccountService {
   }
 
   private void processNewUserAccount(UserAccount newUserAccount) {
-    newUserAccount.setActive(false);
+    //newUserAccount.setActive(false);
     newUserAccount.setCreated(ZonedDateTime.now());
+    final String encryptedPassword = passwordEncoder.encode(newUserAccount.getPassword());
+    newUserAccount.setPassword(encryptedPassword);
+    newUserAccount.setActive(true);
   }
 }
